@@ -8,6 +8,8 @@ class Product(models.Model):
 
 class File(models.Model):
      name=models.CharField(max_length=20)
+     content=models.FileField(upload_to='files')
+     caption=models.CharField(max_length=200)
      product=models.ForeignKey(to="Product",on_delete=models.CASCADE)
 
 class Category(models.Model):

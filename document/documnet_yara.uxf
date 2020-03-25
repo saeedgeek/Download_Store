@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>13</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>507</x>
-      <y>247</y>
-      <w>611</w>
-      <h>338</h>
+      <x>410</x>
+      <y>110</y>
+      <w>235</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 User
@@ -28,10 +28,10 @@ get_list_doenload_production(int:id_product)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>767</y>
-      <w>611</w>
-      <h>247</h>
+      <x>285</x>
+      <y>310</y>
+      <w>235</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Admin
@@ -49,10 +49,10 @@ Admin
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>351</y>
-      <w>273</w>
-      <h>442</h>
+      <x>315</x>
+      <y>150</y>
+      <w>105</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -63,10 +63,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>923</x>
-      <y>754</y>
-      <w>689</w>
-      <h>260</h>
+      <x>570</x>
+      <y>305</y>
+      <w>265</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>«Stereotype»
 Customer
@@ -85,24 +85,24 @@ Customer
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1105</x>
-      <y>338</y>
-      <w>234</w>
-      <h>429</h>
+      <x>640</x>
+      <y>145</y>
+      <w>90</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;20.0;160.0;20.0;160.0;310.0</additional_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0;160.0;320.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>1911</w>
-      <h>1079</h>
+      <x>215</x>
+      <y>15</y>
+      <w>735</w>
+      <h>415</h>
     </coordinates>
     <panel_attributes>User
 --
@@ -112,10 +112,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>351</x>
-      <y>1313</y>
-      <w>273</w>
-      <h>247</h>
+      <x>350</x>
+      <y>520</y>
+      <w>105</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>«Stereotype»
 Stroe
@@ -126,10 +126,10 @@ Stroe
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>13</x>
-      <y>1157</y>
-      <w>715</w>
-      <h>1066</h>
+      <x>220</x>
+      <y>460</y>
+      <w>275</w>
+      <h>410</h>
     </coordinates>
     <panel_attributes>Store
 --
@@ -139,10 +139,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>897</x>
-      <y>1300</y>
-      <w>273</w>
-      <h>247</h>
+      <x>560</x>
+      <y>515</y>
+      <w>105</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 product
@@ -154,10 +154,10 @@ product
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>832</x>
-      <y>1170</y>
-      <w>1105</w>
-      <h>1066</h>
+      <x>535</x>
+      <y>465</y>
+      <w>425</w>
+      <h>410</h>
     </coordinates>
     <panel_attributes>Product
 --
@@ -167,10 +167,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>884</x>
-      <y>1664</y>
-      <w>273</w>
-      <h>247</h>
+      <x>555</x>
+      <y>655</y>
+      <w>105</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 CAtegory
@@ -181,25 +181,27 @@ CAtegory
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1326</x>
-      <y>1300</y>
-      <w>273</w>
-      <h>247</h>
+      <x>725</x>
+      <y>515</y>
+      <w>105</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 File
 --
 -name
+-caption
+-content
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>1001</y>
-      <w>65</w>
-      <h>338</h>
+      <x>395</x>
+      <y>400</y>
+      <w>25</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -210,10 +212,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>546</x>
-      <y>1001</y>
-      <w>507</w>
-      <h>338</h>
+      <x>425</x>
+      <y>400</y>
+      <w>195</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -227,10 +229,10 @@ time of subscriabation</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1079</x>
-      <y>1001</y>
-      <w>65</w>
-      <h>325</h>
+      <x>630</x>
+      <y>400</y>
+      <w>25</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -241,10 +243,10 @@ Buy</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>611</x>
-      <y>1378</y>
-      <w>312</w>
-      <h>65</h>
+      <x>450</x>
+      <y>545</y>
+      <w>120</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -255,10 +257,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1014</x>
-      <y>1534</y>
-      <w>65</w>
-      <h>156</h>
+      <x>605</x>
+      <y>605</y>
+      <w>25</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -269,10 +271,10 @@ m2=0..n
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1157</x>
-      <y>1365</y>
-      <w>195</w>
-      <h>65</h>
+      <x>660</x>
+      <y>540</y>
+      <w>75</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -283,10 +285,10 @@ teaches to &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1495</x>
-      <y>1001</y>
-      <w>65</w>
-      <h>325</h>
+      <x>790</x>
+      <y>400</y>
+      <w>25</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n

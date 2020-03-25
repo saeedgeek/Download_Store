@@ -12,9 +12,9 @@ class Admin(models.Model):
 
 class Customer(models.Model):
      user=models.OneToOneField(to="Profile",on_delete=models.CASCADE)
-     store=models.ManyToManyField(to="store.Store",through="StoreCustomer")
-     product=models.ManyToManyField(to="production.Product")
-     _file=models.ManyToManyField(to="production.File")
+     store=models.ManyToManyField(to="store.Store",null=True,blank=True,through="StoreCustomer")
+     product=models.ManyToManyField(to="production.Product",null=True,blank=True)
+     _file=models.ManyToManyField(to="production.File",null=True,blank=True)
 
 class StoreCustomer(models.Model):
      customer=models.ForeignKey(to="Customer",on_delete=models.CASCADE)
