@@ -1,27 +1,297 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>10</zoom_level>
+  <zoom_level>13</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>100</y>
-      <w>210</w>
-      <h>190</h>
+      <x>507</x>
+      <y>247</y>
+      <w>611</w>
+      <h>338</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Package::FatClass
-{Some Properties}
+User
 --
--id: Long
-_-ClassAttribute: Long_
+-username
+-password
+-email
+-remainMoney
 --
-#Operation(i: int): int
-/+AbstractOperation()/
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
++register(str:user_name , str:email,str:password,bool:isAdmin)
++login(str:username , p:password)
++pay_money(int: amount)
++get_money(int:amount)
+get_downloadlink_file(int:file_id)
+get_list_doenload_production(int:id_product)</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>767</y>
+      <w>611</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Admin
+--
+
+--
+#just can see and download own file 
++create_store(int:store_vip_memcer_ship)
++get_store_list()
++create_product(int:store_id,str:name,Category)
++get_product_list(int:store_id)
++upload_file(file_name,Product</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>351</y>
+      <w>273</w>
+      <h>442</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>923</x>
+      <y>754</y>
+      <w>689</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>«Stereotype»
+Customer
+--
+
+--
++get_all_store()
++get_all_product_of_store(store_id)
++search(by name_file_cat_product)
++get_all_file_of_product(product_id)
++buy_file(int:file_id)
++buy_subscribtion(int:file_id)
++buy_product(int:file_id)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1105</x>
+      <y>338</y>
+      <w>234</w>
+      <h>429</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0;160.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>1911</w>
+      <h>1079</h>
+    </coordinates>
+    <panel_attributes>User
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>351</x>
+      <y>1313</y>
+      <w>273</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>«Stereotype»
+Stroe
+--
+-membership_price</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>13</x>
+      <y>1157</y>
+      <w>715</w>
+      <h>1066</h>
+    </coordinates>
+    <panel_attributes>Store
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>897</x>
+      <y>1300</y>
+      <w>273</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+product
+--
+-name
+-fee</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>832</x>
+      <y>1170</y>
+      <w>1105</w>
+      <h>1066</h>
+    </coordinates>
+    <panel_attributes>Product
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>884</x>
+      <y>1664</y>
+      <w>273</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+CAtegory
+--
+-name pk</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1326</x>
+      <y>1300</y>
+      <w>273</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+File
+--
+-name
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>1001</y>
+      <w>65</w>
+      <h>338</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>1001</y>
+      <w>507</w>
+      <h>338</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n
+
+
+Subscription
+time of subscriabation</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;40.0;350.0;40.0;350.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1079</x>
+      <y>1001</y>
+      <w>65</w>
+      <h>325</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n
+Buy</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>611</x>
+      <y>1378</y>
+      <w>312</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1014</x>
+      <y>1534</y>
+      <w>65</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n
+</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1157</x>
+      <y>1365</y>
+      <w>195</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+teaches to &gt;</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1495</x>
+      <y>1001</y>
+      <w>65</w>
+      <h>325</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n
+Buy</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
