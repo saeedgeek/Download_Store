@@ -8,10 +8,10 @@ class Profile(AbstractUser):
         verbose_name = 'Profile' 
 
 class Admin(models.Model):
-     user=models.OneToOneField(to="Profile",on_delete=models.CASCADE)
+     user=models.OneToOneField(to="Profile",on_delete=models.CASCADE,primary_key=True)
 
 class Customer(models.Model):
-     user=models.OneToOneField(to="Profile",on_delete=models.CASCADE)
+     user=models.OneToOneField(to="Profile",on_delete=models.CASCADE,primary_key=True)
      store=models.ManyToManyField(to="store.Store",null=True,blank=True,through="StoreCustomer")
      product=models.ManyToManyField(to="production.Product",null=True,blank=True)
      _file=models.ManyToManyField(to="production.File",null=True,blank=True)

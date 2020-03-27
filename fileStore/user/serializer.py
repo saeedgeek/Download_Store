@@ -14,7 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
                email=validated_data["email"] ,
                )
           
-          if validated_data["user_type"].startswith("A"):
+          if validated_data["user_type"].startswith("A") or validated_data["user_type"].startswith("a"):
                Admin.objects.create(user=profile)
           else:
                Customer.objects.create(user=profile)     

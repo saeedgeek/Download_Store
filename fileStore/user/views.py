@@ -18,7 +18,7 @@ class Register(APIView):
           if(serializer.is_valid()):
                serializer.save()
                msg="user "+request.data["username"]+" registerd successFully"
-               return  response(condition=0,message=msg,status=status.HTTP_200_OK)                   
+               return  response(condition=1,message=msg,status=status.HTTP_200_OK)                   
           else: 
                return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
