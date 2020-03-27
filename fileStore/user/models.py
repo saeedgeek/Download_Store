@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class Profile(AbstractUser):
-     remainMoney=models.SmallIntegerField()
+     remainMoney=models.SmallIntegerField(default=0,blank=True,null=True)
      class Meta:
         swappable = 'AUTH_USER_MODEL'
         verbose_name = 'Profile' 
