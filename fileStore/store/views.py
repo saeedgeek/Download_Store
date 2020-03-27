@@ -22,3 +22,12 @@ class Create(APIView):
                return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+class ListOfAdminStore(APIView):
+     permission_classes=[AdminPermission,IsAuthenticated]
+     def get(self,request):
+          admin=request.user.admin
+          stores=Store.objects.filter(admin=admin)
+          serlilizer=StoreSerializer(stores,many=True)
+          msg={"Stores list":serlilizer.data}
+          return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
