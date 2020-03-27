@@ -30,3 +30,15 @@ class CreateCategoury(APIView):
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CreateProduct(APIView):
+    permission_classes = (IsAuthenticated,AdminPermission)
+    serializer_class=ProductSerializer
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            msg="Product "+serializer.validated_data["name"]+" create successFully"
+            return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
