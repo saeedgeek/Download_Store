@@ -20,3 +20,10 @@ class RegisterSerializer(serializers.ModelSerializer):
                Customer.objects.create(user=profile)     
           return profile
 
+class ChargingSerializer(serializers.ModelSerializer):
+     class Meta:
+          model=Profile
+          fields=['credit',]
+
+
+    
