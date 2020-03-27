@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
-from utils.permissions import AdminPermission
+from utils.permissions import AdminPermission,StoreForThisAdmin
 from .serializer import  CategourySerializer,ProductSerializer
 from utils.Response import response
 from rest_framework import status
@@ -31,7 +31,7 @@ class CreateCategoury(APIView):
 
 
 class CreateProduct(APIView):
-    permission_classes = (IsAuthenticated,AdminPermission)
+    permission_classes = (IsAuthenticated,AdminPermission,StoreForThisAdmin)
     serializer_class=ProductSerializer
     def post(self,request):
         serializer=self.serializer_class(data=request.data)
@@ -42,3 +42,4 @@ class CreateProduct(APIView):
 
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
