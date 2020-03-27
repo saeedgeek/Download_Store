@@ -68,3 +68,37 @@ class ChargingAccount(APIView):
           else:
                return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
        
+class GetMoney(APIView):
+     serializer_class=ChargingSerializer
+     permission_classes=[IsAuthenticated,]
+     def patch(self,request):
+          serializer=self.serializer_class(data=request.data)
+          if(serializer.is_valid(raise_exception=True)):
+               user=request.user
+               money=serializer.validated_data["credit"]
+               if money>=0:
+                    if user.credit >= money:     
+                         user.credit-= money
+                         user.save()
+                         msg = str(money)+"$ deposit on you banking account soon  your creadit : "+str(user.credit)
+                         return response(condition=1,message=msg,status=status.HTTP_200_OK)                         
+
+                    else:
+
+                         msg = {
+                              "message":"your request money is more than your  credit : ",
+                              "request":money,
+                              "creadit":user.credit
+                         }
+
+                         return response(condition=0,message=msg,status=status.HTTP_400_BAD_REQUEST)
+                                        
+               else:
+                    msg = "creadit must be positive integer number "
+                    return response(condition=0,message=msg,status=status.HTTP_400_BAD_REQUEST)
+                          
+
+
+          else:
+               return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+       
