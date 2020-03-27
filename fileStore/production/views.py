@@ -2,10 +2,11 @@ from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
 from utils.permissions import AdminPermission,StoreForThisAdmin
-from .serializer import  CategourySerializer,ProductSerializer
+from .serializer import  CategourySerializer,ProductSerializer,ProductGetListSerializer,ProductShowListSerializer
 from utils.Response import response
 from rest_framework import status
 from .models import  Category
+from .models import Product
 # Create your views here.
 
 
@@ -42,4 +43,24 @@ class CreateProduct(APIView):
 
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ListOfStoreProduct(APIView):
+    serializer_class=ProductGetListSerializer
+    def get(self,request):
+        serializer=self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            store=serializer.validated_data["store"]
+            products=Product.objects.filter(store=store)
+            products=ProductShowListSerializer(products,many=True)
+            msg={"products":products.data}
+            return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#todo
+class ListOfProductFiles(APIView):
+    serializer_class=ProductGetListSerializer
+    def get(self,request):
+        pass
 

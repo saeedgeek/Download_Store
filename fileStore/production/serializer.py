@@ -9,3 +9,18 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model=Product
         fields="__all__"
+
+
+""" this and """
+class ProductShowListSerializer(serializers.ModelSerializer):
+    """it is for showing data"""
+    class Meta:
+        model=Product
+        fields=["id","name","fee","category"]
+
+
+class ProductGetListSerializer(serializers.ModelSerializer):
+    """ it is for getting data """
+    class Meta:
+        model=Product
+        fields=["store"]
