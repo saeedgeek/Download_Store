@@ -10,7 +10,7 @@
       <h>130</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-User 
+User
 --
 -username
 -password
@@ -36,7 +36,7 @@ get_list_doenload_production(int:id_product)</panel_attributes>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Admin
 --
- 
+
 --
 #just can see and download own file 
 +create_store(int:store_vip_memcer_ship)
