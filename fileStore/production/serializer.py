@@ -35,6 +35,11 @@ class FileShowListSerializer(serializers.ModelSerializer):
         model=File
         fields=["id","name","caption","product"]
 
+class FileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=File
+        fields="__all__"
+
 
 class FileGetListSerializer(serializers.ModelSerializer):
     """ it is for getting data """

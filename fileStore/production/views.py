@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
-from utils.permissions import AdminPermission,StoreForThisAdmin
-from .serializer import  CategourySerializer,ProductSerializer,ProductGetListSerializer,ProductShowListSerializer,FileGetListSerializer,FileShowListSerializer
+from utils.permissions import AdminPermission,StoreForThisAdmin,ProductForThisAdmin
+from .serializer import CategourySerializer, ProductSerializer, ProductGetListSerializer, ProductShowListSerializer, \
+    FileGetListSerializer, FileShowListSerializer, FileSerializer
 from utils.Response import response
 from rest_framework import status
 from .models import  Category,File,Product
@@ -65,11 +66,24 @@ class ListOfProductFiles(APIView):
         if serializer.is_valid():
             product = serializer.validated_data["product"]
             files = File.objects.filter(product=product)
-            files = ProductShowListSerializer(files, many=True)
+            files = FileShowListSerializer(files, many=True)
             msg = {"Files": files.data}
             return response(condition=1, message=msg, status=status.HTTP_200_OK)
 
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#
+
+class UploadFile(APIView):
+    permission_classes = (IsAuthenticated,AdminPermission,ProductForThisAdmin)
+    serializer_class=FileSerializer
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            msg = "Files "+ serializer.validated_data["name"]+" upload successFully"
+            return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

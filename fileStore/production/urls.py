@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import CreateCategoury,GetListOfCategory,CreateProduct,ListOfStoreProduct,ListOfProductFiles
+from .views import CreateCategoury,GetListOfCategory,CreateProduct,ListOfStoreProduct,ListOfProductFiles,UploadFile
 urlpatterns = [
 path("create_categouri",CreateCategoury.as_view()),
 path("create_product",CreateProduct.as_view()),
 path("list_of_categories",GetListOfCategory.as_view()),
 path("list_of_store_products",ListOfStoreProduct.as_view()),
-path("list_of_product_files",ListOfProductFiles.as_view())
+path("list_of_product_files",ListOfProductFiles.as_view()),
+path("upload_File",UploadFile.as_view()),
 ]
