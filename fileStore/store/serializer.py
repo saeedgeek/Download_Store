@@ -16,3 +16,8 @@ class StoreSerializer(serializers.ModelSerializer):
                
                )
           return store
+
+class StoreListSerializer(serializers.ModelSerializer):
+     class Meta:
+          model=Store
+          fields=["admin"]

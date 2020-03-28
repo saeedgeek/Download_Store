@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
-from utils.permissions import AdminPermission,CustomerPersmission
+from utils.permissions import AdminPermission
 from rest_framework.views import APIView
 from rest_framework import status
 from utils.Response import response
 from .models import Store
-from .serializer import StoreSerializer
+from .serializer import StoreSerializer,StoreListSerializer
 # Create your views here.
 
 
@@ -30,4 +30,15 @@ class ListOfAdminStore(APIView):
           serlilizer=StoreSerializer(stores,many=True)
           msg={"Stores list":serlilizer.data}
           return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+class StoreList(APIView):
+     serilizer_class=StoreListSerializer
+     def get(self,request):
+          stores=Store.objects.all()
+          serlilizer=StoreSerializer(stores,many=True)
+          msg={"Stores list":serlilizer.data}
+          return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+
+
 

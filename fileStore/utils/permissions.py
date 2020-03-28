@@ -65,3 +65,5 @@ class ProductForThisAdmin(BasePermission):
                     return False
           except:
                return False
+
+
