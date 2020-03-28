@@ -25,5 +25,3 @@ class ChargingSerializer(serializers.ModelSerializer):
           model=Profile
           fields=['credit',]
 
-
-    

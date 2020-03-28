@@ -21,3 +21,12 @@ class StoreListSerializer(serializers.ModelSerializer):
      class Meta:
           model=Store
           fields=["admin"]
+
+class StoreMemberShipSerializer(serializers.ModelSerializer):
+     class Meta:
+          model=Store
+          fields=["name"]
+          extra_kwargs = {
+               'name': {'validators': []},
+          }
+

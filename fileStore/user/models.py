@@ -20,3 +20,5 @@ class StoreCustomer(models.Model):
      customer=models.ForeignKey(to="Customer",on_delete=models.CASCADE)
      store=models.ForeignKey(to="store.Store",on_delete=models.CASCADE)
      expire_time=models.DateField()
+     class Meta:
+          unique_together = ('customer', 'store',)

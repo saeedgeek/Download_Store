@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
-from utils.permissions import AdminPermission,StoreForThisAdmin,ProductForThisAdmin
+from utils.permissions import AdminPermission, StoreForThisAdmin, ProductForThisAdmin, CustomerPersmission
 from .serializer import CategourySerializer, ProductSerializer, ProductGetListSerializer, ProductShowListSerializer, \
     FileGetListSerializer, FileShowListSerializer, FileSerializer
 from utils.Response import response
@@ -86,4 +86,7 @@ class UploadFile(APIView):
 
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 

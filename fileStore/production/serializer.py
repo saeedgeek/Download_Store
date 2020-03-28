@@ -41,7 +41,7 @@ class FileSerializer(serializers.ModelSerializer):
         fields="__all__"
 
 
-class FileGetListSerializer(serializers.ModelSerializer):
+class FileGetListSerializer(serializers.PrimaryKeyRelatedField):
     """ it is for getting data """
     class Meta:
         model=File
