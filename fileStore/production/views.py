@@ -2,11 +2,10 @@ from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
 from utils.permissions import AdminPermission,StoreForThisAdmin
-from .serializer import  CategourySerializer,ProductSerializer,ProductGetListSerializer,ProductShowListSerializer
+from .serializer import  CategourySerializer,ProductSerializer,ProductGetListSerializer,ProductShowListSerializer,FileGetListSerializer,FileShowListSerializer
 from utils.Response import response
 from rest_framework import status
-from .models import  Category
-from .models import Product
+from .models import  Category,File,Product
 # Create your views here.
 
 
@@ -46,7 +45,7 @@ class CreateProduct(APIView):
 
 class ListOfStoreProduct(APIView):
     serializer_class=ProductGetListSerializer
-    def get(self,request):
+    def post(self,request):
         serializer=self.serializer_class(data=request.data)
         if serializer.is_valid():
             store=serializer.validated_data["store"]
@@ -58,9 +57,19 @@ class ListOfStoreProduct(APIView):
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#todo
-class ListOfProductFiles(APIView):
-    serializer_class=ProductGetListSerializer
-    def get(self,request):
-        pass
 
+class ListOfProductFiles(APIView):
+    serializer_class=FileGetListSerializer
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            product = serializer.validated_data["product"]
+            files = File.objects.filter(product=product)
+            files = ProductShowListSerializer(files, many=True)
+            msg = {"Files": files.data}
+            return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#

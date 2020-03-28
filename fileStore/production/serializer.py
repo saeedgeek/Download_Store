@@ -16,7 +16,7 @@ class ProductShowListSerializer(serializers.ModelSerializer):
     """it is for showing data"""
     class Meta:
         model=Product
-        fields=["id","name","fee","category"]
+        fields=["id","name","fee","category","store"]
 
 
 class ProductGetListSerializer(serializers.ModelSerializer):
@@ -24,3 +24,22 @@ class ProductGetListSerializer(serializers.ModelSerializer):
     class Meta:
         model=Product
         fields=["store"]
+
+
+
+
+""" this and """
+class FileShowListSerializer(serializers.ModelSerializer):
+    """it is for showing data"""
+    class Meta:
+        model=File
+        fields=["id","name","caption","product"]
+
+
+class FileGetListSerializer(serializers.ModelSerializer):
+    """ it is for getting data """
+    class Meta:
+        model=File
+        fields=["product"]
+
+
