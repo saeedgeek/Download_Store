@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import  APIView
 from rest_framework.permissions import IsAuthenticated
+
+from user.models import Customer
 from utils.permissions import AdminPermission, StoreForThisAdmin, ProductForThisAdmin, CustomerPersmission
 from .serializer import CategourySerializer, ProductSerializer, ProductGetListSerializer, ProductShowListSerializer, \
-    FileGetListSerializer, FileShowListSerializer, FileSerializer
+    FileGetListSerializer, FileShowListSerializer, FileSerializer, BuyDownloadFileSerializer, \
+    BuyDownloadFileProducterializer
 from utils.Response import response
 from rest_framework import status
 from .models import  Category,File,Product
@@ -86,6 +89,92 @@ class UploadFile(APIView):
 
         else:
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class BuyProduct(APIView):
+    serializer_class= BuyDownloadFileProducterializer
+    permission_classes = (IsAuthenticated,CustomerPersmission)
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            Ucustomer=request.user
+            customer=Ucustomer.customer
+
+            productRequested=serializer.validated_data["id"]
+            try:
+                productRequested=Product.objects.get(id=serializer.validated_data["id"])
+            except:
+                msg = "this Product is not exist"
+                return response(condition=0, message=msg, status=status.HTTP_400_BAD_REQUEST)
+            customerProduct=customer.product.all()
+            Uadmin=productRequested.store.admin.user
+            if productRequested in customerProduct:
+                msg = "you  Buy " + str(serializer.validated_data["id"]) + " Product before"
+                return response(condition=1, message=msg, status=status.HTTP_202_ACCEPTED)
+            elif productRequested.fee > Ucustomer.credit:
+                msg = "you  dont have enough money sharge your account"
+                return response(condition=0, message=msg, status=status.HTTP_402_PAYMENT_REQUIRED)
+            else:
+                Uadmin.credit+=productRequested.fee
+                Ucustomer.credit -= productRequested.fee
+                customer.product.add(productRequested)
+                customer.save()
+                Ucustomer.save()
+                Uadmin.save()
+                msg = "Product Buy successFully "
+                return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BuyFile(APIView):
+    serializer_class=BuyDownloadFileSerializer
+    permission_classes = (IsAuthenticated,CustomerPersmission)
+
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        pass
+        if serializer.is_valid():
+            Ucustomer=request.user
+            customer=Customer.objects.prefetch_related("product").prefetch_related("_file").get(user=Ucustomer)
+            filerequested=None
+            try:
+                filerequested=File.objects.get(id=serializer.validated_data["id"])
+            except:
+                msg = "this File is not exist"
+                return response(condition=0, message=msg, status=status.HTTP_400_BAD_REQUEST)
+            Uadmin=filerequested.product.store.admin.user
+            customer_file_list=customer._file.all()
+            customer_product_file=[]
+            for product in customer.product.all():
+                customer_product_file.append(list(product.file))
+            customer_all_file=list(customer_file_list)+customer_product_file
+            if filerequested in customer_all_file:
+                msg = "you  Buy " + str(serializer.validated_data["id"]) + " File before"
+                return response(condition=1, message=msg, status=status.HTTP_202_ACCEPTED)
+            elif filerequested.fee > Ucustomer.credit:
+                msg = "you  dont have enough money sharge your account"
+                return response(condition=0, message=msg, status=status.HTTP_402_PAYMENT_REQUIRED)
+            else:
+                Uadmin.credit+=filerequested.fee
+                Ucustomer.credit -= filerequested.fee
+                customer._file.add(filerequested)
+                customer.save()
+                Ucustomer.save()
+                Uadmin.save()
+                msg = "File Buy successFully "
+                return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
+
+
+        else:
+            return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 

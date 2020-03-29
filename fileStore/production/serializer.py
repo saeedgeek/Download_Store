@@ -33,7 +33,7 @@ class FileShowListSerializer(serializers.ModelSerializer):
     """it is for showing data"""
     class Meta:
         model=File
-        fields=["id","name","caption","product"]
+        fields=["id","name","caption","product","fee"]
 
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,3 +46,16 @@ class FileGetListSerializer(serializers.ModelSerializer):
     class Meta:
         model=File
         fields=["product"]
+
+class BuyDownloadFileProducterializer(serializers.ModelSerializer):
+    id=serializers.IntegerField(required=True)
+    class Meta:
+        model=File
+        fields=["id"]
+
+
+class BuyDownloadFileSerializer(serializers.ModelSerializer):
+    id=serializers.IntegerField(required=True)
+    class Meta:
+        model=File
+        fields = ["id"]

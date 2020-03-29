@@ -50,8 +50,14 @@ class BuyStoreMemberShip(APIView):
      def post(self,request):
           serializer=self.serializer_class(data=request.data)
           if serializer.is_valid():
-               store=serializer.validated_data["name"]
-               store=Store.objects.get(name=store)
+               try:
+                    store = serializer.validated_data["name"]
+                    store = Store.objects.get(name=store)
+               except:
+                    msg="this store is not exist"
+                    return response(condition=0, message=msg, status=status.HTTP_400_BAD_REQUEST)
+
+
                Cuser=request.user
                customer=Cuser.customer
                customrt_stores=customer.store.all()
