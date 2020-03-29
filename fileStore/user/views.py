@@ -101,4 +101,25 @@ class GetMoney(APIView):
 
           else:
                return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-       
+
+
+class GetProfile(APIView):
+     permission_classes=[IsAuthenticated,]
+     def get(self,request):
+          user=request.user
+          credit=user.credit
+
+          try:
+              customer=user.customer
+              usertype="customer"
+          except:
+               usertype = "Admin"
+
+
+          msg = {
+               "username":user.username,
+               "credit":credit,
+               "usertype":usertype
+
+          }
+          return response(condition=1, message=msg, status=status.HTTP_200_OK)
