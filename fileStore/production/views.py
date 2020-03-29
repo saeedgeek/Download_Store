@@ -173,6 +173,57 @@ class BuyFile(APIView):
             return response(condition=0, message=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class GetUserResource(APIView):
+    permission_classes = (IsAuthenticated,CustomerPersmission)
+    def get(self,request):
+        customer=request.user.customer
+        stores=customer.store.prefetch_related("product").prefetch_related("product__file").all()
+        Cstores=[]
+        for store in  stores:
+            products=[]
+            for product in store.product.all():
+                files=[]
+                for file in product.file.all():
+                    files.append(FileSerializer(file).data)
+                products.append(
+                    {
+                        "product_name":product.name,
+                        "files":files
+
+
+                    }
+                )
+            Cstores.append({
+                "storename":store.name,
+                "products":products
+
+            })
+
+        products=[]
+        for product in customer.product.all():
+            files = []
+            for file in product.file.all():
+                files.append(FileSerializer(file).data)
+                products.append(
+                {
+                    "product_name": product.name,
+                    "files": files
+                }
+            )
+
+
+        files=[]
+        for file in customer._file.all():
+            files.append(FileSerializer(file).data)
+
+
+        msg ={
+            "stores":Cstores,
+            "product":products,
+            "singleFiles":files
+        }
+        return response(condition=1, message=msg, status=status.HTTP_200_OK)
+
 
 
 
