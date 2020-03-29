@@ -20,7 +20,7 @@ class Create(APIView):
           serializer=self.serializer_class(data=request.data,context={"request":request})
           if serializer.is_valid():
                serializer.save()
-               msg="the store with name ",serializer.validated_data['name']+ "create successFully"
+               msg="the store with name "+serializer.validated_data['name']+ "create successFully"
                return response(condition=1,message=msg,status=status.HTTP_200_OK)
           else:
                return response(condition=0,message=serializer.errors,status=status.HTTP_400_BAD_REQUEST)

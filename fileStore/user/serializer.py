@@ -21,6 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
           return profile
 
 class ChargingSerializer(serializers.ModelSerializer):
+     credit=serializers.IntegerField(required=True)
      class Meta:
           model=Profile
           fields=['credit',]

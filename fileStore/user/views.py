@@ -51,7 +51,7 @@ class ChargingAccount(APIView):
      permission_classes=[IsAuthenticated,]
      def patch(self,request):
           serializer=self.serializer_class(data=request.data)
-          if(serializer.is_valid(raise_exception=True)):
+          if(serializer.is_valid()):
                user=request.user
                money=serializer.validated_data["credit"]
                if money>=0:
