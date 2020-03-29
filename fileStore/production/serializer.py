@@ -41,10 +41,8 @@ class FileSerializer(serializers.ModelSerializer):
         fields="__all__"
 
 
-class FileGetListSerializer(serializers.PrimaryKeyRelatedField):
+class FileGetListSerializer(serializers.ModelSerializer):
     """ it is for getting data """
     class Meta:
         model=File
         fields=["product"]
-
-
